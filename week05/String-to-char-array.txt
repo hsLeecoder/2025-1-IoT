@@ -1,0 +1,21 @@
+void setup() {
+	Serial.begin(115200);
+	Serial.println();
+
+	String nameStr = "gildong";
+	char buf1[10];
+	char buf2[10];
+	char buf3[10];
+
+	nameStr.toCharArray(buf1,sizeof(buf1));
+	strcpy(buf2,buf1)
+	strcpy(buf3,nameStr.c_str());
+
+	Serial.println(buf1);
+	Serial.println(buf2);
+	Serial.println(buf3);
+}
+
+void loop() {
+
+}

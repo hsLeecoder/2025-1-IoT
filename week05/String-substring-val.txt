@@ -1,0 +1,29 @@
+void setup() {
+	Serial.begin(115200);
+	Serial.println();
+
+	String longStr = "9:08:35,27.6";
+
+	int p1 = longStr.indexOf(":");		//처음부터
+	int p2 = longStr.indexOf(":",p1+1);	//p1+1부터
+	int p3 = longStr.indexOf(",");		//처음부터
+
+	String hStr = longStr.substring(0,p1);		//p1 앞 글자까지
+	String mStr = longStr.substring(p1+1,p2);	//p2 앞 글자까지
+	String sStr = longStr.substring(p2+1,p3);	//p3 앞 글자까지
+	String tStr = longStr.substring(p3+1);		//p3+1 부터 끝까지
+
+	int h = hStr.toInt();
+	int m = mStr.toInt();
+	int s = sStr.toInt();
+	float t = tStr.toFloat();
+
+	Serial.println(h);
+	Serial.println(m);
+	Serial.println(s);
+	Serial.println(t);
+}
+
+void loop() {
+
+}

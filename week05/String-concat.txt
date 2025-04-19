@@ -1,0 +1,26 @@
+void setup() {
+	Serial.begin(115200);
+	Serial.println();
+
+	int h = 9;
+	String hStr = String(h);	//9
+
+	int m = 8;
+	String mStr = String(m);	//8
+	if(mStr.length() == 1) {
+		mStr = '0' + mStr;	//08
+	}
+	
+	int s = 35;
+	String sStr = String(s);	//35
+
+	float t = 27.56;
+	String tStr = String(t,1);	//27.6(반올림)
+
+	String longStr = hStr + ":" + mStr + ":" + sStr + "," + tStr;
+	Serial.println(longStr);	//9:08:35,27.6
+}
+
+void loop() {
+
+}
