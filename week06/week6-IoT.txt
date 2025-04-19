@@ -1,0 +1,53 @@
+(리눅스 창)
+mkdir 학번
+
+학번디렉 들어가기
+
+mkdir Blink
+
+vim BlinkAppc.nc
+
+configuration BlinkAppC
+{
+}
+implementation
+{
+        components MainC, BlinkC, LedsC;
+        components new TimerMilliC() as Timer0;
+
+        BlinkC -> mainC.Boot;
+
+        BlinkC.Timer() -> Timer0;
+        BlinkC.Leds -> LedsC;
+}
+
+vim BlinkC.nc
+
+#include "Timer.h"
+
+module BlinkC @safe()
+{
+	uses interface Timer<TMilli> as Timer0;
+	uses interface Leds;
+	uses interface Boot;
+}
+
+implementation
+{
+	event void Boot.booted()
+	{
+		call Timer0.startPeridoic(250);
+	}
+	event void Timer0.fired()
+	{
+		call Leds.led0Toggle();
+	}
+}
+vim Makefile
+
+COMPONENT=BlinkAppC
+include $(MAKERULES)
+
+(usb꽂고)make telosb install.100
+
+
